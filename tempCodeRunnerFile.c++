@@ -1,9 +1,11 @@
 #include <iostream>
 using namespace std;
-string str;
+int n, m;
+
 int main(){
-    getline(cin, str);
-    while(str != "\0"){
-        cout << str;
+    cin >> n >> m;
+    for (int i = 0; i < m;i++){
+        cout << n;
     }
+    return 0;
 }
