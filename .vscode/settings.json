@@ -6,6 +6,7 @@
     "functional": "cpp",
     "new": "cpp",
     "random": "cpp",
-    "istream": "cpp"
+    "istream": "cpp",
+    "*.tcc": "cpp"
   }
 }
