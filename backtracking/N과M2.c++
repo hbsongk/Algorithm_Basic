@@ -10,6 +10,7 @@ void dfs(int level,int flag){
             cout << choose[i] << ' ';
         }
         cout << '\n';
+        return;
     }
     for (int i = flag; i <= n;i++){
         if(visited[i])

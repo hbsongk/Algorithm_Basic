@@ -2,7 +2,6 @@
 using namespace std;
 int n, m;
 int choose[10];
-int visited[10];
 
 void dfs(int level){
     if(level==m){
@@ -10,14 +9,11 @@ void dfs(int level){
             cout << choose[i] << ' ';
         }
         cout << '\n';
+        return;
     }
     for (int i = 1; i <= n;i++){
-        if(visited[i])
-            continue;
         choose[level] = i;
-        visited[i] = 1;
         dfs(level + 1);
-        visited[i] = 0;
     }
 }
 int main(){
