@@ -6,6 +6,7 @@ int main(){
     cin >> n;
     if(n==3 || n==1){
         cout << -1;
+        return 0;
     }
     cnt = n/5;
     n %= 5;
