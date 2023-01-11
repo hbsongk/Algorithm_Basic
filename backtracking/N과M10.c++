@@ -5,6 +5,7 @@ using namespace std;
 int n, m, flag;
 int choose[10004];
 int visited[10004];
+
 int element;
 vector<int> v;
 
