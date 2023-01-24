@@ -1,62 +1,21 @@
 #include <iostream>
-#include <vector>
-#include <queue>
-#include <algorithm>
-
 using namespace std;
-
-int n, m, v;
-int x, y;
-int arr[1004][1004];
-queue<int> q;
-vector<int> routes;
-vector<int> routes2;
-
-void dfs(int x){
-    routes.push_back(x);
-    for (int i = 1; i < n + 1;i++){
-        if(find(routes.begin(),routes.end(),i)!=routes.end())
-            continue;
-        if(arr[x][i]){
-            dfs(i);
-        }
+int n, x;
+int dp[15];
+int way(int x){
+    dp[1] = 1;
+    dp[2] = 2;
+    dp[3] = 4;
+    for (int i = 4; i <=x;i++){
+        dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3];
     }
-    return;
-}
-
-void bfs(int x){
-    q.push(x);
-    while(routes2.size()!=routes.size()){
-        int ele = q.front();
-        q.pop();
-        routes2.push_back(ele);
-        for (int i = 1; i < n + 1;i++){
-            if(find(routes2.begin(),routes2.end(),i)!=routes2.end())
-                continue;
-            if(arr[ele][i]){
-                q.push(i);
-            }
-        }
-    }
-}
+    return dp[x];
+} 
 int main(){
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
-    cin >> n >> m >> v;
-    for (int i = 0; i < m;i++){
-        cin >> x >> y;
-        arr[x][y] = 1;
-        arr[y][x] = 1;
-    }
-    dfs(v);
-    for(int r:routes){
-        cout << r << ' ';
-    }
-    cout << "\n";
-    bfs(v);
-    for(int r:routes2){
-        cout << r << ' ';
-    }
+    cin >> n;
+    for (int i = 0; i < n; i++){
+        cin >> x;
+        cout << way(x) << "/n";
+    } 
     return 0;
 }
