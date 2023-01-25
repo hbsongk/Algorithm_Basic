@@ -1,22 +1,19 @@
-#include <iostream>
-using namespace std;
-int n;
-int cnt;
+push_back(v[i]);
+    }
+}
+
 int main(){
     cin >> n;
-    if(n==3 || n==1){
-        cout << -1;
+    for (int i = 0; i < n;i++){
+        cin >> s;
+        v.push_back(s[0]); // 앞글자만 다 담음
     }
-    cnt = n/5;
-    n %= 5;
-    if(n%2==0){
-        cnt += n / 2;
-    }
-    else{
-        cnt -= 1;
-        n += 5;
-        cnt += n / 2;
-    }
-    cout << cnt;
+    count();
+    sort(v2.begin(), v2.end());
+    for(char c : v2)
+        list += c;
+    if(list=="")
+        cout << "PREDAJA";
+    cout << list;
     return 0;
 }
