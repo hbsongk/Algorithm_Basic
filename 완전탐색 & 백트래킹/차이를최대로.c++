@@ -1,36 +1,26 @@
 #include <iostream>
+#include <algorithm>
 #include <vector>
 using namespace std;
-int n, _max, sum;
-int a[10];
-int visited[104];
+int n;
+int sum, _max;
 vector<int> v;
-void dfs(){
-    // 조건
-    if(v.size()==n){
-        sum = 0;
-        for (int i = 0; i < n-1;i++){
-            sum += abs(v[i] - v[i + 1]);
-            _max = max(_max, sum);
-        }
-        return;
-    }
-    for (int i = 0; i < n; i++){
-        if(visited[i])
-            continue;
-        v.push_back(a[i]);
-        visited[i] = 1;
-        dfs();
-        v.pop_back();
-        visited[i] = 0;
-    }
-}
 int main(){
     cin >> n;
     for (int i = 0; i < n;i++){
-        cin >> a[i];
+        int element;
+        cin >> element;
+        v.push_back(element);
     }
-    dfs();
+    sort(v.begin(), v.end());
+    do{
+        sum = 0;
+        for (int i = 0; i < n-1;i++){
+            sum += abs(v[i] - v[i + 1]);
+        }
+        _max = max(_max,sum);
+    } while (next_permutation(v.begin(), v.end()));
+
     cout << _max;
     return 0;
 }
