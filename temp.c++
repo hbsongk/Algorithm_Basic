@@ -1,18 +1,17 @@
 #include <iostream>
 #include <string>
 using namespace std;
-string s;
-int cnt = 0;
+int sum;
 int main(){
-    getline(cin,s);
-    for (int i = 0; i < s.length();i++)
-    {
-        if(i==0 && s[i]==' ')continue; // 첫번째
-        if(s[i] == ' ')cnt++;
+    for (int i = 0; i < 3;i++){
+        for (int j = 0; j < 3;j++){
+            sum += i + j;
+        }
     }
-    if(s[s.length()-1]!=' ')
-        cnt++;
-    cout << cnt;
+    for (int i = 0; i < 6;i++){
+        sum += i;
+    }
+    cout << sum;
 
     return 0;
 }
