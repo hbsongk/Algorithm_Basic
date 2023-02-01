@@ -1,17 +1,38 @@
 #include <iostream>
 #include <string>
 using namespace std;
-int sum;
-int main(){
-    for (int i = 0; i < 3;i++){
-        for (int j = 0; j < 3;j++){
-            sum += i + j;
+
+int n;
+string s;
+int flag;
+
+void func(string t, int depth){
+    if(flag)
+        return;
+    int len = t.size();
+    for (int i = 1; i <= (len / 2);i++){
+        if (t.substr(len-i,i)==t.substr(len-(2*i),i)){
+                t = "";
+                return;
         }
     }
-    for (int i = 0; i < 6;i++){
-        sum += i;
+    if(depth>n)
+        return;
+    if(depth==n){
+        flag = 1;
+        cout << t << "\n";
+        return;
     }
-    cout << sum;
+    else {
+        for (int i = 0; i < n;i++){
+                func(t + "1", depth + 1);
+                func(t + "2", depth + 1);
+                func(t + "3", depth + 1);
+        }
+    }
+}
 
-    return 0;
+int main(){
+    cin >> n;
+    func(s, 0);
 }
