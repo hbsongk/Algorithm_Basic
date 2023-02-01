@@ -1,14 +1,6 @@
-#include <iostream>
-using namespace std;
-int n, sum;
-string s;
-int main(){
     cin >> n;
-    cin >> s;
-    for (char c: s){
-        int a = c - '0';
-        sum += a;
+    for (int i = 0; i < n;i++){
+        float p = pow(10, n-i-1);
+        int a = s[i % 4] - '0';
+        sum += a * p;
     }
-    cout << sum;
-    return 0;
-}
