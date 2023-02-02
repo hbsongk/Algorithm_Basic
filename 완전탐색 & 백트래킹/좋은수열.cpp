@@ -1,41 +1,33 @@
 #include <iostream>
-#include <vector>
+#include <string>
 using namespace std;
-int n;
-int pre;
-int _min = 987654321;
 string s;
+bool flag;
+int n;
 
-vector<char> v;
-
-int repeat(string s){
-
-}
-void dfs(){
-    if(v.size()==n){
-        s = "";
-        for(char c : v){
-            s += c;
+void func(string st, int depth){
+    if(flag) return;
+    int len = st.size();
+    for (int i = 1;i<=(len/2);i++){
+        if(st.substr(len-i,i) == st.substr(len-2*i,i)){
+            return;
         }
-        if(repeat(s)){
-            int num = stoi(s);
-            _min = min(_min, num);
-        }
+    }
+    if (depth == n){
+        flag = true;
+        cout << st;
         return;
     }
-    for (int i = 1; i < 4;i++){
-        if(pre==i)
-            continue;
-        pre = i;
-        char a = i + '0';
-        v.push_back(a);
-        dfs();
-        v.pop_back();
+    else{
+        for (int i = 0; i < n;i++){
+            func(st + "1", depth + 1);
+            func(st + "2", depth + 1);
+            func(st + "3", depth + 1);
+        }
     }
 }
 int main(){
     cin >> n;
-    dfs();
-    cout << _min;
+    func(s,0);
     return 0;
 }
