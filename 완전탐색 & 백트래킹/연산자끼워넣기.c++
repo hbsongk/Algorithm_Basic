@@ -1,59 +1,60 @@
 #include <iostream>
-#include <vector>
 using namespace std;
-int n, _plus, _minus, _multiple, _divide;
-int _min = 987654321;
-int _max = -1;
-vector<int> v;
+typedef long long ll;
+int n;
+ll _max = -1000000000;
+ll _min = 1000000000;
+int _plus, _minus, _multiple, _divide;
+int arr[14];
+int cal[4];
 int sum;
-
-void dfs(int st, int depth){
-    if(depth==n){
-        _min = min(_min, sum);
-        _max = max(_max, sum);
+void dfs(ll s, int depth){
+    if(depth == n){
+        if(_max < s)
+            _max = s;
+        if(_min > s)
+            _min = s;
         return;
     }
-    for (int i = st; i < n;i++){
-        if(_plus){
-            sum += v[i];
-            _plus--;
-            dfs(st+1, depth+1);
-            _plus++;
-            sum -= v [i];
+    for (int jj = 0; jj < 4; jj++){
+        if (cal[jj] && jj == 0)
+        {
+            cal[jj]--;
+            dfs(s+arr[depth], depth + 1);
+            cal[jj]++;
         }
-        if(_minus){
-            sum -= v[i];
-            _minus--;
-            dfs(st+1, depth+1);
-            _minus++;
-            sum += v[i];
+        else if (cal[jj] && jj == 1)
+        {
+            cal[jj]--;
+            dfs(s-arr[depth], depth + 1);
+            cal[jj]++;
         }
-        if(_multiple){
-            sum *= v[i];
-            _multiple--;
-            dfs(st+1, depth+1);
-            _multiple++;
-            sum /= v[i];
+        else if (cal[jj] && jj == 2)
+        {
+            cal[jj]--;
+            dfs(s*arr[depth], depth + 1);
+            cal[jj]++;
+
         }
-        if(_divide){
-            sum /= v[i];
-            _divide--;
-            dfs(st+1, depth+1);
-            _divide++;
-            sum *= v[i];
+        else if (cal[jj] && jj == 3)
+        {
+            cal[jj]--;
+            dfs(s/arr[depth], depth + 1);
+            cal[jj]++;
         }
     }
 }
 int main(){
     cin >> n;
     for (int i = 0; i < n;i++){
-        int element;
-        cin >> element;
-        v.push_back(element);
+        cin >> arr[i];
     }
-    cin >> _plus >> _minus >> _multiple >> _divide;
-    sum = v[0];
-    dfs(1, 1);
-    cout << _max << "\n" << _min;
+    for (int i = 0; i < 4;i++){
+        cin >> cal[i];
+    }
+    sum = arr[0];
+    dfs(sum,1);
+
+    cout << _max << '\n' << _min;
     return 0;
 }
