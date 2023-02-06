@@ -4,7 +4,6 @@
 #include <map>
 #include <memory.h>
 using namespace std;
-map<char, int> m;
 vector<int> v(5, 2);
 int main(){
     memset(&v[0], -1, sizeof(v));
