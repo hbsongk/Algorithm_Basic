@@ -1,4 +1,1 @@
-            // if(nx == n-1 && ny == m-1){
-            //     cout << sum;
-            //     return 0;
-            // }
+  cout << brr[safe[0].first][safe[0].second] << endl;
