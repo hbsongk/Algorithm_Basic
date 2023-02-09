@@ -12,19 +12,15 @@ int arr[26] = {3, 2, 1, 2, 4, 3, 1, 3, 1, 1, 3, 1, 3, 2, 1, 2, 2, 2, 1, 2, 1, 1,
 int recursive(vector<int>v){
     v2.clear();
     if(v.size()==2){
-        int k = 100;
-        int res = 0;
-        for (int i = 0; i < 2;i++){
-            k /= 10;
-            res += v[i] * k;
-        }
-        return res;
+        int ret;
+        ret = v[0] * 10 + v[1];
+        return ret;
     } 
     for (int i = 1; i < v.size();i++){
         v2.push_back((v[i-1] + v[i]) % 10);
     }
-    int res = recursive(v2);
-    return res;
+    int ret = recursive(v2);
+    return ret;
 }
 
 int main(){
